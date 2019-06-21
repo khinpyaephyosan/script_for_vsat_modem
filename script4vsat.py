@@ -10,7 +10,7 @@ cmd_file = sys.argv[1]
 
 first_jump = paramiko.SSHClient()
 first_jump.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-first_jump.connect('first_host_ip', username='first_host_usr', password='first_host_pwd!', allow_agent=False) #first ssh jump
+first_jump.connect('first_host_ip', username='first_host_usr', password='first_host_pwd!', allow_agent=False) #first ssh jump to nms server
 #
 first_jumptransport = first_jump.get_transport()
 dest_addr = ('second_host_ip', 22)
@@ -19,7 +19,7 @@ first_jumpchannel = first_jumptransport.open_channel("direct-tcpip", dest_addr, 
 #
 second_jump = paramiko.SSHClient()
 second_jump.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-second_jump.connect('second_host_ip ', username='second_host_usr', password='second_host_pwd', allow_agent=False, sock=first_jumpchannel) #second ssh jump
+second_jump.connect('second_host_ip ', username='second_host_usr', password='second_host_pwd', allow_agent=False, sock=first_jumpchannel) #second ssh jump to jupiter vsat modem
 #
 selected_cmd_file = open(cmd_file, 'r') #open command.txt and read line by line
 selected_cmd_file.seek(0)
