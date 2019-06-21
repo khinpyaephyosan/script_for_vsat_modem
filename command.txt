@@ -1,0 +1,2 @@
+# add line by line that you want to put command
+route -n
